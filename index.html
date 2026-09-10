@@ -1,0 +1,2319 @@
+```html
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>MONKY — Just a monky trying to make it.</title>
+
+<meta name="description"
+      content="MONKY — memes, community and chaos on Solana. Join the monky movement.">
+
+<meta name="theme-color" content="#ffd21c">
+
+<style>
+
+/* =========================================================
+   VARIABLES
+========================================================= */
+
+:root{
+  --yellow:#ffd21c;
+  --yellow-dark:#b18d00;
+  --black:#080808;
+  --black-2:#0d0d0d;
+  --black-3:#131313;
+  --white:#fff;
+  --muted:#a7a7a7;
+  --border:#252525;
+  --green:#46e38c;
+  --red:#ff5757;
+}
+
+/* =========================================================
+   RESET
+========================================================= */
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  background:var(--black);
+  color:var(--white);
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  overflow-x:hidden;
+}
+
+body::selection{
+  background:var(--yellow);
+  color:#111;
+}
+
+a{
+  text-decoration:none;
+  color:inherit;
+}
+
+img{
+  max-width:100%;
+}
+
+button{
+  font:inherit;
+}
+
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+.container{
+  width:min(1180px,92%);
+  margin:auto;
+}
+
+section{
+  padding:110px 0;
+  position:relative;
+}
+
+.kicker{
+  color:var(--yellow);
+  font-size:13px;
+  font-weight:1000;
+  letter-spacing:4px;
+  text-transform:uppercase;
+  margin-bottom:12px;
+}
+
+.title{
+  font-size:clamp(40px,6vw,68px);
+  line-height:.95;
+  letter-spacing:-3px;
+  margin-bottom:20px;
+}
+
+.yellow{
+  color:var(--yellow);
+}
+
+.muted{
+  color:var(--muted);
+}
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+  border-radius:14px;
+  padding:14px 22px;
+  font-size:14px;
+  font-weight:1000;
+  border:2px solid var(--yellow);
+  background:var(--yellow);
+  color:#111;
+  box-shadow:0 7px 0 var(--yellow-dark);
+  transition:.18s ease;
+  cursor:pointer;
+}
+
+.btn:hover{
+  transform:translateY(3px);
+  box-shadow:0 4px 0 var(--yellow-dark);
+}
+
+.btn.dark{
+  background:#111;
+  color:#fff;
+  box-shadow:none;
+}
+
+.btn.dark:hover{
+  background:#1a1a1a;
+  transform:translateY(-2px);
+}
+
+.btn.full{
+  width:100%;
+}
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+.nav{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  z-index:100;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:17px 4%;
+  background:rgba(8,8,8,.76);
+  backdrop-filter:blur(15px);
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.logo{
+  font-size:25px;
+  font-weight:1000;
+  letter-spacing:-1.5px;
+}
+
+.logo span{
+  color:var(--yellow);
+}
+
+.navlinks{
+  display:flex;
+  gap:28px;
+  align-items:center;
+  color:#ddd;
+  font-size:13px;
+  font-weight:900;
+}
+
+.navlinks a{
+  transition:.2s ease;
+}
+
+.navlinks a:hover{
+  color:var(--yellow);
+}
+
+.nav-actions{
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero{
+  min-height:100vh;
+  padding:145px 0 80px;
+  display:flex;
+  align-items:center;
+  position:relative;
+  overflow:hidden;
+  background:
+    radial-gradient(
+      circle at 75% 35%,
+      rgba(255,210,28,.14),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 20% 100%,
+      rgba(255,210,28,.05),
+      transparent 35%
+    ),
+    var(--black);
+}
+
+.hero-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:55px;
+  align-items:center;
+}
+
+.hero-copy{
+  position:relative;
+  z-index:2;
+}
+
+.hero h1{
+  font-size:clamp(80px,13vw,160px);
+  line-height:.76;
+  letter-spacing:-9px;
+  margin:18px 0 25px;
+  font-weight:1000;
+}
+
+.hero-tag{
+  font-size:clamp(22px,3vw,34px);
+  line-height:1.1;
+  font-weight:900;
+  margin-bottom:20px;
+}
+
+.hero-description{
+  max-width:610px;
+  color:var(--muted);
+  font-size:18px;
+  line-height:1.75;
+}
+
+.actions{
+  display:flex;
+  gap:15px;
+  flex-wrap:wrap;
+  margin-top:32px;
+}
+
+.hero-meta{
+  display:flex;
+  gap:20px;
+  flex-wrap:wrap;
+  margin-top:28px;
+  color:#888;
+  font-size:12px;
+}
+
+.hero-meta strong{
+  color:#ddd;
+}
+
+.hero-art{
+  position:relative;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.hero-glow{
+  position:absolute;
+  width:470px;
+  height:470px;
+  border-radius:50%;
+  background:rgba(255,210,28,.08);
+  filter:blur(50px);
+}
+
+.heroimg{
+  width:min(600px,100%);
+  position:relative;
+  z-index:2;
+  filter:
+    drop-shadow(0 30px 60px rgba(255,210,28,.13))
+    drop-shadow(0 0 35px rgba(255,255,255,.04));
+  animation:float 5s ease-in-out infinite;
+}
+
+@keyframes float{
+  0%,100%{
+    transform:translateY(0) rotate(-1deg);
+  }
+  50%{
+    transform:translateY(-16px) rotate(1deg);
+  }
+}
+
+/* =========================================================
+   FLOATING BANANAS
+========================================================= */
+
+.floating{
+  position:absolute;
+  font-size:38px;
+  opacity:.13;
+  pointer-events:none;
+  animation:bananaFloat linear infinite;
+}
+
+.floating.one{
+  top:25%;
+  left:5%;
+  animation-duration:9s;
+}
+
+.floating.two{
+  top:60%;
+  right:7%;
+  animation-duration:12s;
+}
+
+.floating.three{
+  top:15%;
+  right:35%;
+  animation-duration:11s;
+}
+
+@keyframes bananaFloat{
+  0%{
+    transform:translateY(0) rotate(0);
+  }
+  50%{
+    transform:translateY(-25px) rotate(15deg);
+  }
+  100%{
+    transform:translateY(0) rotate(0);
+  }
+}
+
+/* =========================================================
+   TICKER
+========================================================= */
+
+.ticker{
+  overflow:hidden;
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  background:var(--yellow);
+  color:#111;
+}
+
+.ticker-track{
+  display:flex;
+  width:max-content;
+  animation:ticker 22s linear infinite;
+  padding:13px 0;
+}
+
+.ticker-item{
+  display:flex;
+  align-items:center;
+  gap:18px;
+  padding-right:36px;
+  font-size:13px;
+  font-weight:1000;
+  text-transform:uppercase;
+}
+
+@keyframes ticker{
+  from{
+    transform:translateX(0);
+  }
+  to{
+    transform:translateX(-50%);
+  }
+}
+
+/* =========================================================
+   ABOUT
+========================================================= */
+
+.about-intro{
+  max-width:760px;
+}
+
+.about-intro p{
+  color:var(--muted);
+  font-size:18px;
+  line-height:1.75;
+}
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+  margin-top:45px;
+}
+
+.card{
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.035),
+      rgba(255,255,255,.01)
+    );
+  border:1px solid var(--border);
+  border-radius:24px;
+  padding:30px;
+  transition:.25s ease;
+}
+
+.card:hover{
+  transform:translateY(-7px);
+  border-color:#3c3c3c;
+}
+
+.card-icon{
+  width:55px;
+  height:55px;
+  display:grid;
+  place-items:center;
+  background:#191919;
+  border:1px solid #2b2b2b;
+  border-radius:16px;
+  font-size:26px;
+  margin-bottom:22px;
+}
+
+.card h3{
+  font-size:23px;
+  margin-bottom:10px;
+}
+
+.card p{
+  color:#999;
+  line-height:1.7;
+  font-size:15px;
+}
+
+/* =========================================================
+   STATS
+========================================================= */
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  border:1px solid var(--border);
+  border-radius:24px;
+  overflow:hidden;
+  margin-top:50px;
+}
+
+.stat{
+  padding:28px 24px;
+  background:#101010;
+  border-right:1px solid var(--border);
+}
+
+.stat:last-child{
+  border-right:none;
+}
+
+.stat-number{
+  font-size:32px;
+  font-weight:1000;
+  color:var(--yellow);
+}
+
+.stat-label{
+  color:#888;
+  font-size:13px;
+  margin-top:5px;
+}
+
+/* =========================================================
+   TOKEN SECTION
+========================================================= */
+
+.token-section{
+  background:
+    linear-gradient(
+      rgba(255,210,28,.025),
+      rgba(255,210,28,0)
+    );
+}
+
+.token-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:22px;
+  margin-top:45px;
+}
+
+.token-card{
+  background:#101010;
+  border:1px solid var(--border);
+  border-radius:24px;
+  padding:30px;
+}
+
+.token-card h3{
+  font-size:23px;
+  margin-bottom:20px;
+}
+
+.token-row{
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  padding:18px 0;
+  border-bottom:1px solid var(--border);
+}
+
+.token-row:last-child{
+  border-bottom:none;
+}
+
+.token-row span:first-child{
+  color:#888;
+}
+
+.token-row strong{
+  color:var(--yellow);
+  text-align:right;
+}
+
+.contract-box{
+  background:#181818;
+  border:1px solid #2c2c2c;
+  border-radius:14px;
+  padding:14px;
+  margin-top:18px;
+}
+
+.contract-label{
+  font-size:11px;
+  color:#777;
+  text-transform:uppercase;
+  letter-spacing:2px;
+  margin-bottom:8px;
+}
+
+.contract-address{
+  font-size:13px;
+  color:#bbb;
+  word-break:break-all;
+  line-height:1.5;
+}
+
+/* =========================================================
+   TOKENOMICS
+========================================================= */
+
+.tokenomics{
+  margin-top:22px;
+}
+
+.progress{
+  height:14px;
+  background:#202020;
+  border-radius:50px;
+  overflow:hidden;
+  margin:20px 0 12px;
+}
+
+.progress-fill{
+  height:100%;
+  width:70%;
+  background:var(--yellow);
+  border-radius:50px;
+}
+
+.tokenomics-list{
+  display:grid;
+  gap:12px;
+  margin-top:25px;
+}
+
+.tokenomics-item{
+  display:flex;
+  justify-content:space-between;
+  padding:12px 14px;
+  background:#171717;
+  border-radius:12px;
+}
+
+.tokenomics-item span:first-child{
+  color:#aaa;
+}
+
+/* =========================================================
+   BUY SECTION
+========================================================= */
+
+.buy-box{
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  gap:25px;
+  margin-top:45px;
+}
+
+.buy-main{
+  padding:45px;
+  border-radius:28px;
+  border:1px solid var(--border);
+  background:
+    radial-gradient(
+      circle at 100% 0,
+      rgba(255,210,28,.12),
+      transparent 40%
+    ),
+    #101010;
+}
+
+.buy-main h3{
+  font-size:35px;
+  margin-bottom:12px;
+}
+
+.buy-main p{
+  color:#999;
+  line-height:1.7;
+}
+
+.buy-steps{
+  display:grid;
+  gap:13px;
+  margin-top:28px;
+}
+
+.buy-step{
+  display:flex;
+  gap:15px;
+  align-items:flex-start;
+  padding:15px;
+  background:#161616;
+  border:1px solid #222;
+  border-radius:15px;
+}
+
+.step-number{
+  min-width:36px;
+  height:36px;
+  display:grid;
+  place-items:center;
+  border-radius:10px;
+  background:var(--yellow);
+  color:#111;
+  font-weight:1000;
+}
+
+.buy-side{
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+}
+
+.social-card{
+  flex:1;
+  padding:28px;
+  border:1px solid var(--border);
+  border-radius:24px;
+  background:#101010;
+}
+
+.social-card h4{
+  font-size:21px;
+  margin-bottom:7px;
+}
+
+.social-card p{
+  color:#888;
+  line-height:1.6;
+  font-size:14px;
+  margin-bottom:18px;
+}
+
+/* =========================================================
+   ROADMAP
+========================================================= */
+
+.roadmap{
+  margin-top:50px;
+  position:relative;
+}
+
+.roadmap-line{
+  position:absolute;
+  left:28px;
+  top:0;
+  bottom:0;
+  width:2px;
+  background:#282828;
+}
+
+.roadmap-item{
+  position:relative;
+  display:grid;
+  grid-template-columns:58px 1fr;
+  gap:24px;
+  margin-bottom:28px;
+}
+
+.roadmap-dot{
+  position:relative;
+  z-index:2;
+  width:58px;
+  height:58px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  border:2px solid var(--yellow);
+  background:#101010;
+  font-weight:1000;
+  color:var(--yellow);
+}
+
+.roadmap-card{
+  background:#101010;
+  border:1px solid var(--border);
+  border-radius:22px;
+  padding:27px;
+}
+
+.roadmap-card h3{
+  font-size:22px;
+  margin-bottom:9px;
+}
+
+.roadmap-card p{
+  color:#929292;
+  line-height:1.65;
+}
+
+/* =========================================================
+   COMMUNITY
+========================================================= */
+
+.community{
+  text-align:center;
+}
+
+.community-content{
+  max-width:760px;
+  margin:auto;
+}
+
+.community-content p{
+  color:#999;
+  line-height:1.75;
+  font-size:18px;
+}
+
+.community-buttons{
+  display:flex;
+  justify-content:center;
+  gap:15px;
+  flex-wrap:wrap;
+  margin-top:30px;
+}
+
+.community-panel{
+  margin-top:50px;
+  padding:35px;
+  border:1px solid var(--border);
+  border-radius:25px;
+  background:#101010;
+  text-align:left;
+}
+
+.community-panel h3{
+  font-size:26px;
+  margin-bottom:18px;
+}
+
+.community-panel-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+}
+
+.community-box{
+  padding:20px;
+  background:#161616;
+  border-radius:15px;
+}
+
+.community-box strong{
+  color:var(--yellow);
+  display:block;
+  font-size:23px;
+  margin-bottom:6px;
+}
+
+.community-box span{
+  color:#888;
+  font-size:13px;
+}
+
+/* =========================================================
+   FAQ
+========================================================= */
+
+.faq{
+  max-width:850px;
+  margin:45px auto 0;
+}
+
+.faq-item{
+  border-bottom:1px solid var(--border);
+}
+
+.faq-question{
+  width:100%;
+  background:none;
+  border:0;
+  color:#fff;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  text-align:left;
+  padding:22px 0;
+  cursor:pointer;
+  font-weight:900;
+  font-size:17px;
+}
+
+.faq-icon{
+  color:var(--yellow);
+  font-size:25px;
+  transition:.25s;
+}
+
+.faq-answer{
+  max-height:0;
+  overflow:hidden;
+  transition:.35s ease;
+}
+
+.faq-answer p{
+  color:#888;
+  line-height:1.7;
+  padding:0 0 22px;
+}
+
+.faq-item.active .faq-answer{
+  max-height:250px;
+}
+
+.faq-item.active .faq-icon{
+  transform:rotate(45deg);
+}
+
+/* =========================================================
+   FINAL CTA
+========================================================= */
+
+.final-cta{
+  padding:80px 0;
+}
+
+.cta-box{
+  text-align:center;
+  padding:75px 30px;
+  border-radius:30px;
+  border:1px solid #383838;
+  background:
+    radial-gradient(
+      circle at 50% 0,
+      rgba(255,210,28,.15),
+      transparent 45%
+    ),
+    #101010;
+}
+
+.cta-box h2{
+  font-size:clamp(40px,7vw,72px);
+  letter-spacing:-4px;
+  margin-bottom:18px;
+}
+
+.cta-box p{
+  color:#969696;
+  max-width:600px;
+  margin:auto;
+  line-height:1.7;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer{
+  border-top:1px solid var(--border);
+  padding:55px 0;
+  color:#777;
+}
+
+.footer-grid{
+  display:flex;
+  justify-content:space-between;
+  gap:25px;
+  flex-wrap:wrap;
+  align-items:center;
+}
+
+.footer-brand{
+  color:#fff;
+  font-size:20px;
+  font-weight:1000;
+}
+
+.footer-brand span{
+  color:var(--yellow);
+}
+
+.footer-links{
+  display:flex;
+  gap:20px;
+  flex-wrap:wrap;
+  font-size:13px;
+}
+
+.footer-links a:hover{
+  color:var(--yellow);
+}
+
+.footer-bottom{
+  border-top:1px solid var(--border);
+  margin-top:30px;
+  padding-top:25px;
+  font-size:12px;
+  line-height:1.6;
+}
+
+/* =========================================================
+   BACK TO TOP
+========================================================= */
+
+.top{
+  position:fixed;
+  right:22px;
+  bottom:22px;
+  width:45px;
+  height:45px;
+  display:grid;
+  place-items:center;
+  border-radius:13px;
+  background:var(--yellow);
+  color:#111;
+  font-weight:1000;
+  z-index:80;
+  box-shadow:0 5px 0 var(--yellow-dark);
+  transition:.2s;
+}
+
+.top:hover{
+  transform:translateY(3px);
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:900px){
+
+  .navlinks{
+    display:none;
+  }
+
+  .nav{
+    padding:15px 5%;
+  }
+
+  .hero{
+    padding-top:125px;
+  }
+
+  .hero-grid{
+    grid-template-columns:1fr;
+  }
+
+  .hero-copy{
+    text-align:center;
+  }
+
+  .hero-description{
+    margin:auto;
+  }
+
+  .actions{
+    justify-content:center;
+  }
+
+  .hero-meta{
+    justify-content:center;
+  }
+
+  .hero-art{
+    order:-1;
+  }
+
+  .heroimg{
+    max-width:420px;
+  }
+
+  .cards,
+  .token-grid,
+  .buy-box{
+    grid-template-columns:1fr;
+  }
+
+  .stats{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .stat:nth-child(2){
+    border-right:none;
+  }
+
+  .stat:nth-child(-n+2){
+    border-bottom:1px solid var(--border);
+  }
+
+  .community-panel-grid{
+    grid-template-columns:1fr;
+  }
+
+}
+
+@media(max-width:600px){
+
+  section{
+    padding:80px 0;
+  }
+
+  .hero h1{
+    font-size:78px;
+    letter-spacing:-6px;
+  }
+
+  .hero-tag{
+    font-size:24px;
+  }
+
+  .hero-description{
+    font-size:16px;
+  }
+
+  .title{
+    letter-spacing:-2px;
+  }
+
+  .stats{
+    grid-template-columns:1fr;
+  }
+
+  .stat{
+    border-right:none;
+    border-bottom:1px solid var(--border);
+  }
+
+  .stat:last-child{
+    border-bottom:none;
+  }
+
+  .buy-main{
+    padding:28px;
+  }
+
+  .community-panel{
+    padding:25px;
+  }
+
+  .cta-box{
+    padding:55px 20px;
+  }
+
+  .nav-actions .btn{
+    padding:10px 14px;
+  }
+
+}
+
+/* =========================================================
+   SCROLL ANIMATION
+========================================================= */
+
+.reveal{
+  opacity:0;
+  transform:translateY(25px);
+  transition:
+    opacity .7s ease,
+    transform .7s ease;
+}
+
+.reveal.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- =======================================================
+     NAVBAR
+======================================================== -->
+
+<nav class="nav">
+
+  <a class="logo" href="#">
+    🐒 <span>MONKY</span>
+  </a>
+
+  <div class="navlinks">
+    <a href="#about">ABOUT</a>
+    <a href="#token">TOKEN</a>
+    <a href="#roadmap">ROADMAP</a>
+    <a href="#community">COMMUNITY</a>
+    <a href="#faq">FAQ</a>
+  </div>
+
+  <div class="nav-actions">
+    <a
+      class="btn"
+      href="https://x.com/monkycoinof"
+      target="_blank"
+      rel="noopener">
+      FOLLOW X
+    </a>
+  </div>
+
+</nav>
+
+<!-- =======================================================
+     HERO
+======================================================== -->
+
+<header class="hero">
+
+  <div class="floating one">🍌</div>
+  <div class="floating two">🍌</div>
+  <div class="floating three">🍌</div>
+
+  <div class="container hero-grid">
+
+    <div class="hero-copy reveal">
+
+      <div class="kicker">
+        The monky has arrived.
+      </div>
+
+      <h1>
+        MONKY
+      </h1>
+
+      <div class="hero-tag">
+        Just a monky trying to make it. 🍌
+      </div>
+
+      <p class="hero-description">
+        No complicated story.
+        No boring corporate nonsense.
+        Just memes, community, chaos and one ambitious monky
+        trying to take over the internet.
+      </p>
+
+      <div class="actions">
+
+        <a
+          class="btn"
+          href="#token">
+          GET $MONKY
+        </a>
+
+        <a
+          class="btn dark"
+          href="https://x.com/monkycoinof"
+          target="_blank"
+          rel="noopener">
+          JOIN THE COMMUNITY
+        </a>
+
+      </div>
+
+      <div class="hero-meta">
+
+        <span>
+          Network:
+          <strong>Solana</strong>
+        </span>
+
+        <span>
+          Ticker:
+          <strong>$MONKY</strong>
+        </span>
+
+        <span>
+          Status:
+          <strong>MONKING 👑</strong>
+        </span>
+
+      </div>
+
+    </div>
+
+    <div class="hero-art reveal">
+
+      <div class="hero-glow"></div>
+
+      <img
+        class="heroimg"
+        src="monkycoin.png"
+        alt="MONKY mascot">
+
+    </div>
+
+  </div>
+
+</header>
+
+<!-- =======================================================
+     TICKER
+======================================================== -->
+
+<div class="ticker">
+
+  <div class="ticker-track">
+
+    <div class="ticker-item">
+      🐒 MONKY
+      <span>•</span>
+      🍌 MEMES
+      <span>•</span>
+      👑 COMMUNITY
+      <span>•</span>
+      🚀 SOLANA
+      <span>•</span>
+    </div>
+
+    <div class="ticker-item">
+      🐒 MONKY
+      <span>•</span>
+      🍌 MEMES
+      <span>•</span>
+      👑 COMMUNITY
+      <span>•</span>
+      🚀 SOLANA
+      <span>•</span>
+    </div>
+
+    <div class="ticker-item">
+      🐒 MONKY
+      <span>•</span>
+      🍌 MEMES
+      <span>•</span>
+      👑 COMMUNITY
+      <span>•</span>
+      🚀 SOLANA
+      <span>•</span>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- =======================================================
+     ABOUT
+======================================================== -->
+
+<section id="about">
+
+  <div class="container">
+
+    <div class="about-intro reveal">
+
+      <div class="kicker">
+        Why MONKY?
+      </div>
+
+      <h2 class="title">
+        Small monky.
+        <span class="yellow">
+          Big dreams.
+        </span>
+      </h2>
+
+      <p>
+        MONKY is built around one simple idea:
+        have fun, build a community and make the internet a little
+        more chaotic.
+        No fake promises. No complicated corporate mission.
+        Just a character people can rally around.
+      </p>
+
+    </div>
+
+    <div class="cards">
+
+      <div class="card reveal">
+
+        <div class="card-icon">
+          🐒
+        </div>
+
+        <h3>
+          Community
+        </h3>
+
+        <p>
+          MONKY belongs to the people who build the memes,
+          share the jokes and keep the community moving.
+        </p>
+
+      </div>
+
+      <div class="card reveal">
+
+        <div class="card-icon">
+          🍌
+        </div>
+
+        <h3>
+          Pure Memes
+        </h3>
+
+        <p>
+          The brand is the character.
+          The community creates the stories,
+          the memes and the chaos.
+        </p>
+
+      </div>
+
+      <div class="card reveal">
+
+        <div class="card-icon">
+          👑
+        </div>
+
+        <h3>
+          Have Fun
+        </h3>
+
+        <p>
+          MONKY is a meme project.
+          Enjoy the ride, do your own research
+          and never risk more than you can afford.
+        </p>
+
+      </div>
+
+    </div>
+
+    <div class="stats reveal">
+
+      <div class="stat">
+        <div class="stat-number">
+          ∞
+        </div>
+        <div class="stat-label">
+          Memes possible
+        </div>
+      </div>
+
+      <div class="stat">
+        <div class="stat-number">
+          1
+        </div>
+        <div class="stat-label">
+          Official monky
+        </div>
+      </div>
+
+      <div class="stat">
+        <div class="stat-number">
+          24/7
+        </div>
+        <div class="stat-label">
+          Banana energy
+        </div>
+      </div>
+
+      <div class="stat">
+        <div class="stat-number">
+          100%
+        </div>
+        <div class="stat-label">
+          Meme powered
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- =======================================================
+     TOKEN
+======================================================== -->
+
+<section id="token" class="token-section">
+
+  <div class="container">
+
+    <div class="kicker reveal">
+      The token
+    </div>
+
+    <h2 class="title reveal">
+      Meet
+      <span class="yellow">
+        $MONKY
+      </span>
+    </h2>
+
+    <div class="token-grid">
+
+      <div class="token-card reveal">
+
+        <h3>
+          Token Information
+        </h3>
+
+        <div class="token-row">
+          <span>Network</span>
+          <strong>Solana</strong>
+        </div>
+
+        <div class="token-row">
+          <span>Ticker</span>
+          <strong>$MONKY</strong>
+        </div>
+
+        <div class="token-row">
+          <span>Type</span>
+          <strong>Memecoin</strong>
+        </div>
+
+        <div class="contract-box">
+
+          <div class="contract-label">
+            Contract Address
+          </div>
+
+          <div class="contract-address">
+            ADD CONTRACT ADDRESS HERE
+          </div>
+
+        </div>
+
+        <br>
+
+        <a
+          class="btn full"
+          href="#"
+          onclick="copyContract(event)">
+          COPY CONTRACT
+        </a>
+
+      </div>
+
+      <div class="token-card reveal">
+
+        <h3>
+          Tokenomics
+        </h3>
+
+        <p class="muted">
+          Replace these values with your real tokenomics
+          before publishing.
+        </p>
+
+        <div class="tokenomics">
+
+          <div class="progress">
+            <div class="progress-fill"></div>
+          </div>
+
+          <div
+            style="
+              display:flex;
+              justify-content:space-between;
+              font-size:13px;
+              color:#888;
+            ">
+            <span>
+              Community
+            </span>
+            <strong
+              style="color:var(--yellow)">
+              70%
+            </strong>
+          </div>
+
+        </div>
+
+        <div class="tokenomics-list">
+
+          <div class="tokenomics-item">
+            <span>Community</span>
+            <strong>70%</strong>
+          </div>
+
+          <div class="tokenomics-item">
+            <span>Liquidity</span>
+            <strong>20%</strong>
+          </div>
+
+          <div class="tokenomics-item">
+            <span>Marketing</span>
+            <strong>5%</strong>
+          </div>
+
+          <div class="tokenomics-item">
+            <span>Team</span>
+            <strong>5%</strong>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- =======================================================
+     HOW TO BUY
+======================================================== -->
+
+<section>
+
+  <div class="container">
+
+    <div class="kicker reveal">
+      How to buy
+    </div>
+
+    <h2 class="title reveal">
+      Get your
+      <span class="yellow">
+        bananas.
+      </span>
+    </h2>
+
+    <div class="buy-box">
+
+      <div class="buy-main reveal">
+
+        <h3>
+          Join the monky movement.
+        </h3>
+
+        <p>
+          Keep it simple.
+          Connect your wallet, find the token and join
+          the community.
+        </p>
+
+        <div class="buy-steps">
+
+          <div class="buy-step">
+
+            <div class="step-number">
+              1
+            </div>
+
+            <div>
+              <strong>
+                Get a Solana wallet
+              </strong>
+
+              <p style="margin-top:5px;font-size:14px;">
+                Use a wallet compatible with the Solana network.
+              </p>
+            </div>
+
+          </div>
+
+          <div class="buy-step">
+
+            <div class="step-number">
+              2
+            </div>
+
+            <div>
+              <strong>
+                Get SOL
+              </strong>
+
+              <p style="margin-top:5px;font-size:14px;">
+                You'll need SOL for the swap and network fees.
+              </p>
+            </div>
+
+          </div>
+
+          <div class="buy-step">
+
+            <div class="step-number">
+              3
+            </div>
+
+            <div>
+              <strong>
+                Swap for $MONKY
+              </strong>
+
+              <p style="margin-top:5px;font-size:14px;">
+                Use the official contract address and verify it carefully.
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="buy-side">
+
+        <div class="social-card reveal">
+
+          <h4>
+            🐦 X / Twitter
+          </h4>
+
+          <p>
+            Follow the official account for memes,
+            announcements and community updates.
+          </p>
+
+          <a
+            class="btn full"
+            href="https://x.com/monkycoinof"
+            target="_blank"
+            rel="noopener">
+            FOLLOW MONKY
+          </a>
+
+        </div>
+
+        <div class="social-card reveal">
+
+          <h4>
+            💬 Community
+          </h4>
+
+          <p>
+            Add your Telegram, Discord or other official
+            community channel here.
+          </p>
+
+          <a
+            class="btn dark full"
+            href="#community">
+            JOIN COMMUNITY
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- =======================================================
+     ROADMAP
+======================================================== -->
+
+<section id="roadmap">
+
+  <div class="container">
+
+    <div class="kicker reveal">
+      The plan
+    </div>
+
+    <h2 class="title reveal">
+      MONKY's
+      <span class="yellow">
+        journey.
+      </span>
+    </h2>
+
+    <div class="roadmap">
+
+      <div class="roadmap-line"></div>
+
+      <div class="roadmap-item reveal">
+
+        <div class="roadmap-dot">
+          01
+        </div>
+
+        <div class="roadmap-card">
+
+          <h3>
+            Create 🐒
+          </h3>
+
+          <p>
+            Launch MONKY, establish the official brand,
+            publish the website and open the community channels.
+          </p>
+
+        </div>
+
+      </div>
+
+      <div class="roadmap-item reveal">
+
+        <div class="roadmap-dot">
+          02
+        </div>
+
+        <div class="roadmap-card">
+
+          <h3>
+            Meme 🍌
+          </h3>
+
+          <p>
+            Create funny content, launch community events,
+            expand the meme library and get people talking
+            about MONKY.
+          </p>
+
+        </div>
+
+      </div>
+
+      <div class="roadmap-item reveal">
+
+        <div class="roadmap-dot">
+          03
+        </div>
+
+        <div class="roadmap-card">
+
+          <h3>
+            Grow 👑
+          </h3>
+
+          <p>
+            Build partnerships, community collaborations,
+            creator campaigns and more MONKY content.
+          </p>
+
+        </div>
+
+      </div>
+
+      <div class="roadmap-item reveal">
+
+        <div class="roadmap-dot">
+          04
+        </div>
+
+        <div class="roadmap-card">
+
+          <h3>
+            Go Everywhere 🚀
+          </h3>
+
+          <p>
+            Take MONKY beyond the original community and
+            build a recognizable meme brand across the internet.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- =======================================================
+     COMMUNITY
+======================================================== -->
+
+<section id="community" class="community">
+
+  <div class="container">
+
+    <div class="community-content reveal">
+
+      <div class="kicker">
+        Community
+      </div>
+
+      <h2 class="title">
+        The monky
+        <span class="yellow">
+          needs you.
+        </span>
+      </h2>
+
+      <p>
+        MONKY isn't just one character.
+        It's everyone who shares the meme,
+        tells the joke, creates the art and keeps the energy alive.
+      </p>
+
+      <div class="community-buttons">
+
+        <a
+          class="btn"
+          href="https://x.com/monkycoinof"
+          target="_blank"
+          rel="noopener">
+          🐦 FOLLOW ON X
+        </a>
+
+        <a
+          class="btn dark"
+          href="#">
+          💬 TELEGRAM
+        </a>
+
+      </div>
+
+    </div>
+
+    <div class="community-panel reveal">
+
+      <h3>
+        MONKY community
+      </h3>
+
+      <div class="community-panel-grid">
+
+        <div class="community-box">
+
+          <strong>
+            MEMES
+          </strong>
+
+          <span>
+            Make something hilarious.
+          </span>
+
+        </div>
+
+        <div class="community-box">
+
+          <strong>
+            ART
+          </strong>
+
+          <span>
+            Create your own MONKY.
+          </span>
+
+        </div>
+
+        <div class="community-box">
+
+          <strong>
+            CHAOS
+          </strong>
+
+          <span>
+            Keep the internet guessing.
+          </span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- =======================================================
+     FAQ
+======================================================== -->
+
+<section id="faq">
+
+  <div class="container">
+
+    <div style="text-align:center;" class="reveal">
+
+      <div class="kicker">
+        Questions
+      </div>
+
+      <h2 class="title">
+        Frequently asked
+        <span class="yellow">
+          stuff.
+        </span>
+      </h2>
+
+    </div>
+
+    <div class="faq">
+
+      <div class="faq-item reveal">
+
+        <button class="faq-question">
+
+          <span>
+            What is MONKY?
+          </span>
+
+          <span class="faq-icon">
+            +
+          </span>
+
+        </button>
+
+        <div class="faq-answer">
+
+          <p>
+            MONKY is a community-driven memecoin project
+            built around memes, entertainment and internet culture.
+          </p>
+
+        </div>
+
+      </div>
+
+      <div class="faq-item reveal">
+
+        <button class="faq-question">
+
+          <span>
+            What network is MONKY on?
+          </span>
+
+          <span class="faq-icon">
+            +
+          </span>
+
+        </button>
+
+        <div class="faq-answer">
+
+          <p>
+            MONKY is designed for the Solana ecosystem.
+          </p>
+
+        </div>
+
+      </div>
+
+      <div class="faq-item reveal">
+
+        <button class="faq-question">
+
+          <span>
+            Where can I find the official contract?
+          </span>
+
+          <span class="faq-icon">
+            +
+          </span>
+
+        </button>
+
+        <div class="faq-answer">
+
+          <p>
+            Always use the contract address published
+            on the official MONKY channels and verify it
+            before interacting with any token.
+          </p>
+
+        </div>
+
+      </div>
+
+      <div class="faq-item reveal">
+
+        <button class="faq-question">
+
+          <span>
+            Is MONKY financial advice?
+          </span>
+
+          <span class="faq-icon">
+            +
+          </span>
+
+        </button>
+
+        <div class="faq-answer">
+
+          <p>
+            No. MONKY is a meme project.
+            Crypto assets are highly volatile and risky.
+            Always do your own research.
+          </p>
+
+        </div>
+
+      </div>
+
+      <div class="faq-item reveal">
+
+        <button class="faq-question">
+
+          <span>
+            How can I join the community?
+          </span>
+
+          <span class="faq-icon">
+            +
+          </span>
+
+        </button>
+
+        <div class="faq-answer">
+
+          <p>
+            Follow the official X account and use the
+            community links published on this website.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- =======================================================
+     FINAL CTA
+======================================================== -->
+
+<section class="final-cta">
+
+  <div class="container">
+
+    <div class="cta-box reveal">
+
+      <div style="font-size:55px;margin-bottom:15px;">
+        🐒
+      </div>
+
+      <h2>
+        LET THE
+        <span class="yellow">
+          MONKY
+        </span>
+        BEGIN.
+      </h2>
+
+      <p>
+        One monky.
+        One community.
+        Unlimited memes.
+      </p>
+
+      <div class="community-buttons">
+
+        <a
+          class="btn"
+          href="https://x.com/monkycoinof"
+          target="_blank"
+          rel="noopener">
+          JOIN THE MONKY
+        </a>
+
+        <a
+          class="btn dark"
+          href="#token">
+          VIEW TOKEN
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- =======================================================
+     FOOTER
+======================================================== -->
+
+<footer>
+
+  <div class="container">
+
+    <div class="footer-grid">
+
+      <div class="footer-brand">
+        🐒 <span>MONKY</span>
+      </div>
+
+      <div class="footer-links">
+
+        <a href="#about">
+          About
+        </a>
+
+        <a href="#token">
+          Token
+        </a>
+
+        <a href="#roadmap">
+          Roadmap
+        </a>
+
+        <a href="#community">
+          Community
+        </a>
+
+        <a href="#faq">
+          FAQ
+        </a>
+
+        <a
+          href="https://x.com/monkycoinof"
+          target="_blank"
+          rel="noopener">
+          X
+        </a>
+
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+
+      🐒 MONKY — Just a monky trying to make it.
+
+      <br><br>
+
+      <small>
+        Memecoin project. Not financial advice.
+        Crypto assets are highly risky.
+        Always do your own research.
+      </small>
+
+    </div>
+
+  </div>
+
+</footer>
+
+<a
+  href="#"
+  class="top"
+  aria-label="Back to top">
+  ↑
+</a>
+
+<!-- =======================================================
+     JAVASCRIPT
+======================================================== -->
+
+<script>
+
+/* =========================================================
+   FAQ
+========================================================= */
+
+document.querySelectorAll(".faq-question").forEach(button => {
+
+  button.addEventListener("click", () => {
+
+    const item = button.parentElement;
+
+    document
+      .querySelectorAll(".faq-item")
+      .forEach(other => {
+
+        if(other !== item){
+          other.classList.remove("active");
+        }
+
+      });
+
+    item.classList.toggle("active");
+
+  });
+
+});
+
+/* =========================================================
+   COPY CONTRACT
+========================================================= */
+
+function copyContract(event){
+
+  event.preventDefault();
+
+  const address =
+    document.querySelector(".contract-address").textContent.trim();
+
+  if(
+    !address ||
+    address === "ADD CONTRACT ADDRESS HERE"
+  ){
+    alert("Add your real contract address first.");
+    return;
+  }
+
+  navigator.clipboard.writeText(address)
+    .then(() => {
+
+      alert("Contract address copied!");
+
+    })
+    .catch(() => {
+
+      alert("Could not copy the contract address.");
+
+    });
+
+}
+
+/* =========================================================
+   SCROLL REVEAL
+========================================================= */
+
+const observer =
+  new IntersectionObserver(
+    entries => {
+
+      entries.forEach(entry => {
+
+        if(entry.isIntersecting){
+
+          entry.target.classList.add("show");
+
+          observer.unobserve(entry.target);
+
+        }
+
+      });
+
+    },
+    {
+      threshold:.12
+    }
+  );
+
+document
+  .querySelectorAll(".reveal")
+  .forEach(el => observer.observe(el));
+
+/* =========================================================
+   NAVBAR SCROLL
+========================================================= */
+
+window.addEventListener("scroll", () => {
+
+  const nav =
+    document.querySelector(".nav");
+
+  if(window.scrollY > 30){
+
+    nav.style.background =
+      "rgba(8,8,8,.94)";
+
+  }else{
+
+    nav.style.background =
+      "rgba(8,8,8,.76)";
+
+  }
+
+});
+
+</script>
+
+</body>
+</html>
+```
