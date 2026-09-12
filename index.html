@@ -11,7 +11,7 @@
 
 <meta name="theme-color" content="#ffd21c">
 
-<link rel="stylesheet" href="index.css">
+<link rel="stylesheet" href="index.css?v=gecko-chart-1">
 </head>
 
 <body>
@@ -361,7 +361,7 @@
           </div>
 
           <div class="contract-address">
-      8X5R1wZ35Pb5jkZAtzeLfyK9gXmdoy2pY4ex4vDqpump
+           8X5R1wZ35Pb5jkZAtzeLfyK9gXmdoy2pY4ex4vDqpump
           </div>
 
         </div>
@@ -452,7 +452,22 @@
     <div class="market-metrics" aria-label="Market statistics"><div class="market-metric"><span>MONKY price</span><strong id="market-price">—</strong></div><div class="market-metric"><span>24h change</span><strong id="market-change">—</strong></div><div class="market-metric"><span>Market cap</span><strong id="market-cap">—</strong></div><div class="market-metric"><span>Pool liquidity</span><strong id="market-liquidity">—</strong></div><div class="market-metric"><span>24h pool volume</span><strong id="market-volume">—</strong></div></div>
     <div class="market-update"><p id="market-status" role="status">Looking up market data...</p><button type="button" id="market-refresh">Refresh</button></div>
     <div class="market-grid">
-      <article class="market-card"><div class="market-card-head"><h3>Price chart</h3><a id="monky-chart-link" href="https://dexscreener.com/solana/8X5R1wZ35Pb5jkZAtzeLfyK9gXmdoy2pY4ex4vDqpump" target="_blank" rel="noopener noreferrer">Open DexScreener ↗</a></div><p id="monky-chart-status" class="market-muted">The chart will appear when a trading pair is found.</p><iframe id="monky-chart-frame" class="monky-chart-frame" title="$MONKY price chart" hidden loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe><p class="market-note">If the chart stays loading, open DexScreener above.</p></article>
+      <article class="market-card monky-calculator">
+<div class="market-card-head"><h3>MONKY calculator</h3><a id="monky-chart-link" href="https://dexscreener.com/solana/8X5R1wZ35Pb5jkZAtzeLfyK9gXmdoy2pY4ex4vDqpump" target="_blank" rel="noopener noreferrer">View market ↗</a></div>
+<p class="market-muted">Turn your amount into an estimated MONKY balance.</p>
+<label for="calc-amount">Your amount</label>
+<div class="calc-inputs"><input id="calc-amount" type="number" min="0" step="any" inputmode="decimal" value="10"><select id="calc-currency" aria-label="Input currency"><option value="USD">USD</option><option value="SOL">SOL</option></select></div>
+<div class="calc-result"><span>ESTIMATED MONKY</span><output id="calc-result" for="calc-amount calc-currency">—</output><strong>$MONKY</strong></div>
+<p id="calc-status" class="market-note" role="status">Waiting for live prices...</p>
+<p class="market-note">Price estimate only. Excludes fees, slippage and price impact. Use the swap panel for an executable quote.</p>
+<div id="history-chart" class="mini-price-chart">
+<div class="market-card-head"><h3>MONKY chart</h3><a id="history-link" href="https://www.geckoterminal.com/solana/pools/8X5R1wZ35Pb5jkZAtzeLfyK9gXmdoy2pY4ex4vDqpump" target="_blank" rel="noopener noreferrer">Open GeckoTerminal ↗</a></div>
+<iframe id="history-frame" title="MONKY historical price chart from GeckoTerminal" hidden loading="lazy" allowfullscreen></iframe>
+<p id="history-status" class="market-note" role="status">Historical chart loads when this section is visible.</p>
+<button id="history-retry" type="button" class="btn">RETRY CHART</button>
+<p class="market-note">Chart: GeckoTerminal. Pool and pricing may differ from the DexScreener statistics above.</p>
+</div>
+</article>
       <article class="market-card market-swap"><div class="market-card-head"><h3>Swap MONKY</h3><span class="market-muted">via Jupiter</span></div><p class="market-muted">Choose an amount. Connect your wallet when you are ready.</p><div id="jupiter-plugin"></div><p id="swap-status" role="status" class="market-note">Loading swap...</p><a class="market-external" href="https://jup.ag/swap/So11111111111111111111111111111111111111112-8X5R1wZ35Pb5jkZAtzeLfyK9gXmdoy2pY4ex4vDqpump" target="_blank" rel="noopener noreferrer">Open Jupiter ↗</a><p class="market-note">Quotes and swaps depend on available liquidity and a supported route.</p></article>
     </div>
     <div class="market-bottom"><article class="market-card"><div class="market-card-head"><h3>24h activity</h3><span class="market-muted">Selected pool</span></div><div class="market-activity"><div><span>Buys</span><strong id="market-buys">—</strong></div><div><span>Sells</span><strong id="market-sells">—</strong></div></div><p class="market-note">Transaction counts, not unique traders.</p></article><article class="market-card"><div class="market-card-head"><h3>Token explorer</h3><span class="market-badge">$MONKY</span></div><p class="market-muted">Explore holders, transfers and token details on Solscan.</p><a class="market-external" href="https://solscan.io/token/8X5R1wZ35Pb5jkZAtzeLfyK9gXmdoy2pY4ex4vDqpump" target="_blank" rel="noopener noreferrer">View token on Solscan ↗</a><p class="market-note">Market data: DexScreener. Values refer to the selected pool and refresh every 60 seconds.</p></article></div>
@@ -588,7 +603,7 @@
 
           <a
             class="btn dark full"
-            href="hhttps://t.me/MonkyCoinOf">
+            href="http://t.me/MonkyCoinOf">
             JOIN COMMUNITY
           </a>
 
@@ -755,7 +770,7 @@
 
         <a
           class="btn dark"
-          href="hhttps://t.me/MonkyCoinOf">
+          href="http://t.me/MonkyCoinOf">
           💬 TELEGRAM
         </a>
 
@@ -1216,6 +1231,7 @@ window.addEventListener("scroll", () => {
 
 </script>
 
-<script src="market.js" defer></script>
+<script src="history-chart.js?v=1" defer></script>
+<script src="market.js?v=gecko-chart-1" defer></script>
 </body>
 </html>

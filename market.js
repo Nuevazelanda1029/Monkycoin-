@@ -2,8 +2,46 @@
   'use strict';
   const token = '8X5R1wZ35Pb5jkZAtzeLfyK9gXmdoy2pY4ex4vDqpump';
   const el = id => document.getElementById(id);
+  const mobile = window.matchMedia('(max-width: 1000px), (pointer: coarse)').matches;
+  if (mobile) {
+    el('jupiter-plugin').hidden = true;
+    el('swap-status').textContent = 'Tap Load swap when you are ready, or open Jupiter directly.';
+    const loadButton = document.createElement('button');
+    loadButton.type = 'button';
+    loadButton.className = 'btn';
+    loadButton.textContent = 'LOAD SWAP';
+    el('jupiter-plugin').before(loadButton);
+    loadButton.addEventListener('click', () => {
+      loadButton.disabled = true;
+      loadButton.hidden = true;
+      el('jupiter-plugin').hidden = false;
+      el('swap-status').textContent = 'Loading swap...';
+      loadSwap();
+    }, {once:true});
+  }
   const money = value => value == null || !Number.isFinite(Number(value)) ? '—' : new Intl.NumberFormat('en-US', {style:'currency',currency:'USD',notation:'compact',maximumFractionDigits:2}).format(Number(value));
-  let busy = false, lastUpdate = null, currentPair = '';
+  let busy = false, lastUpdate = null;
+  let usdPrice = null, solPrice = null, priceTime = null;
+  function calculate() {
+    const input=el('calc-amount');
+    const amount=Number(input.value);
+    const currency=el('calc-currency').value;
+    const price=currency === 'SOL' ? solPrice : usdPrice;
+    el('calc-result').textContent='—';
+    if (input.value.trim()==='' || !Number.isFinite(amount) || amount<0) {
+      el('calc-status').textContent='Enter a valid amount of zero or more.'; return;
+    }
+    if (!price || !priceTime || Date.now()-priceTime.getTime()>120000) {
+      el('calc-status').textContent='Current '+currency+' price unavailable. Try Refresh or choose another currency.'; return;
+    }
+    const result=amount/price;
+    if (!Number.isFinite(result)) {el('calc-status').textContent='This amount is too large.';return;}
+    el('calc-result').textContent=new Intl.NumberFormat('en-US',{maximumFractionDigits:4}).format(result);
+    el('calc-status').textContent='Estimate based on '+currency+' market price · Updated '+priceTime.toLocaleTimeString();
+  }
+  el('calc-amount').addEventListener('input',calculate);
+  el('calc-currency').addEventListener('change',calculate);
+  setInterval(calculate,30000);
   async function refresh() {
     if (busy) return;
     busy = true; el('market-refresh').disabled = true;
@@ -19,9 +57,10 @@
       if (!pairs.length) {
         ['price','change','cap','liquidity','volume','buys','sells'].forEach(key => el('market-'+key).textContent='—');
         el('market-change').removeAttribute('data-direction');
-        el('monky-chart-frame').hidden=true; el('monky-chart-frame').removeAttribute('src'); currentPair=''; lastUpdate=null;
+        lastUpdate=null; usdPrice=null; solPrice=null; priceTime=null; calculate();
+      window.dispatchEvent(new Event('monky-price-unavailable'));
         el('market-status').textContent='No indexed trading pair found. Try again later.';
-        el('monky-chart-status').textContent='DexScreener has no indexed MONKY pool to display.';
+
         return;
       }
       const p = pairs[0];
@@ -44,20 +83,23 @@
         }
       } catch { /* Fall back to the validated pool address. */ }
       el('monky-chart-link').href=url;
-      if (currentPair!==url) {
-        el('monky-chart-frame').src=url+'?embed=1&info=0&trades=0&theme=dark';
-        el('monky-chart-frame').hidden=false; currentPair=url;
-      }
-      el('monky-chart-status').textContent='MONKY / '+(p.quoteToken?.symbol||'quote token')+' · '+(p.dexId||'Solana');
+      usdPrice = Number(p.priceUsd) > 0 && Number.isFinite(Number(p.priceUsd)) ? Number(p.priceUsd) : null;
+      const solPool = pairs.find(pair => pair.quoteToken?.address === 'So11111111111111111111111111111111111111112' && Number(pair.priceNative) > 0 && Number.isFinite(Number(pair.priceNative)));
+      solPrice = solPool ? Number(solPool.priceNative) : null;
+      priceTime = new Date(); calculate();
+      if (usdPrice) window.dispatchEvent(new CustomEvent('monky-price', {detail:{price:usdPrice,pair:p.pairAddress,time:priceTime.getTime()}}));
+      else window.dispatchEvent(new Event('monky-price-unavailable'));
       lastUpdate=new Date();
       el('market-status').textContent='Updated '+lastUpdate.toLocaleTimeString()+' · Highest-liquidity matching pool';
     } catch {
+      usdPrice=null; solPrice=null; priceTime=null; calculate();
+      window.dispatchEvent(new Event('monky-price-unavailable'));
       el('market-status').textContent=lastUpdate?'Update failed. Showing older data from '+lastUpdate.toLocaleTimeString()+'.':'Market data unavailable. Check your connection or try Refresh.';
     } finally {clearTimeout(timer);busy=false;el('market-refresh').disabled=false;}
   }
   el('market-refresh').addEventListener('click',() => {
     if (busy) return;
-    currentPair='';
+
     refresh();
   });
   el('market-copy').addEventListener('click',async () => {
@@ -65,6 +107,7 @@
     catch {el('market-copy-status').textContent='Select the contract text to copy it manually.';}
   });
   refresh(); setInterval(() => {if (!document.hidden) refresh();},60000);
+  function loadSwap() {
   const script=document.createElement('script');
   script.src='https://plugin.jup.ag/plugin-v1.js'; script.async=true;
   const swapTimeout=setTimeout(() => {el('swap-status').textContent='Swap is taking longer to load. You can open Jupiter below.';},20000);
@@ -80,4 +123,6 @@
     } catch {clearTimeout(swapTimeout);el('swap-status').textContent='Swap could not start. Open Jupiter below.';}
   };
   document.head.appendChild(script);
+  }
+  if (!mobile) loadSwap();
 })();
