@@ -1,4 +1,3 @@
-```html
 <!doctype html>
 <html lang="en">
 <head>
@@ -30,6 +29,7 @@
   <div class="navlinks">
     <a href="#about">ABOUT</a>
     <a href="#token">TOKEN</a>
+    <a href="#chart">CHART</a>
     <a href="#roadmap">ROADMAP</a>
     <a href="#community">COMMUNITY</a>
 <a href="monky_lab">CREATE</a>
@@ -361,7 +361,7 @@
           </div>
 
           <div class="contract-address">
-            8X5R1wZ35Pb5jkZAtzeLfyK9gXmdoy2pY4ex4vDqpump
+            ADD CONTRACT ADDRESS HERE
           </div>
 
         </div>
@@ -442,6 +442,31 @@
 
   </div>
 
+</section>
+
+<!-- MONKY LIVE CHART -->
+<section id="chart" aria-labelledby="monky-chart-title">
+  <div class="container">
+    <div class="kicker">FOLLOW THE MONKY</div>
+    <h2 class="title" id="monky-chart-title">$MONKY Live Chart</h2>
+    <p class="monky-chart-description">Follow $MONKY price action on Solana.</p>
+    <p id="monky-chart-status" class="monky-chart-description" role="status">Finding the $MONKY trading pair...</p>
+    <div class="monky-chart-panel">
+      <iframe
+        class="monky-chart-frame"
+        title="$MONKY price chart on DexScreener"
+        id="monky-chart-frame" hidden
+        loading="lazy"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen>
+      </iframe>
+    </div>
+    <div class="monky-chart-footer">
+      <p>Chart provided by DexScreener. If it is unavailable, open DexScreener directly. Data appears when the token has an indexed trading pair.</p>
+      <a id="monky-chart-link" class="btn" href="https://dexscreener.com/solana/8X5R1wZ35Pb5jkZAtzeLfyK9gXmdoy2pY4ex4vDqpump" target="_blank" rel="noopener noreferrer">OPEN DEXSCREENER</a>
+    </div>
+    <p class="monky-chart-contract">Contract: <code>8X5R1wZ35Pb5jkZAtzeLfyK9gXmdoy2pY4ex4vDqpump</code></p>
+  </div>
 </section>
 
 <!-- =======================================================
@@ -1201,6 +1226,37 @@ window.addEventListener("scroll", () => {
 
 </script>
 
+<script>
+(async function () {
+  const token = '8X5R1wZ35Pb5jkZAtzeLfyK9gXmdoy2pY4ex4vDqpump';
+  const status = document.getElementById('monky-chart-status');
+  const frame = document.getElementById('monky-chart-frame');
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 15000);
+  try {
+    const response = await fetch('https://api.dexscreener.com/token-pairs/v1/solana/' + token, {signal: controller.signal});
+    if (!response.ok) throw new Error('Pair lookup failed');
+    const data = await response.json();
+    if (!Array.isArray(data)) throw new Error('Invalid pair response');
+    const pairs = data.filter(pair => pair.chainId === 'solana' &&
+      pair.baseToken?.address === token && /^[1-9A-HJ-NP-Za-km-z]{32,44}$/.test(pair.pairAddress));
+    pairs.sort((a, b) => (Number(b.liquidity?.usd) || 0) - (Number(a.liquidity?.usd) || 0) ||
+      (Number(b.volume?.h24) || 0) - (Number(a.volume?.h24) || 0));
+    if (!pairs.length) {
+      status.textContent = 'DexScreener has no indexed trading pair for $MONKY yet. Check again later or open DexScreener directly.';
+      return;
+    }
+    const url = 'https://dexscreener.com/solana/' + pairs[0].pairAddress;
+    document.getElementById('monky-chart-link').href = url;
+    frame.src = url + '?embed=1&loadChartSettings=0&trades=0&info=0&chartLeftToolbar=0&chartTheme=dark&theme=dark&chartStyle=1&interval=15';
+    frame.hidden = false;
+    status.textContent = 'Trading pair found. If the chart keeps loading, use OPEN DEXSCREENER below.';
+  } catch (error) {
+    status.textContent = 'Unable to contact DexScreener. Check your connection, reload the page, or use OPEN DEXSCREENER below.';
+  } finally {
+    clearTimeout(timeout);
+  }
+})();
+</script>
 </body>
 </html>
-```
