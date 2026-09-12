@@ -29,7 +29,7 @@
   <div class="navlinks">
     <a href="#about">ABOUT</a>
     <a href="#token">TOKEN</a>
-    <a href="#chart">CHART</a>
+    <a href="#chart">MARKET</a>
     <a href="#roadmap">ROADMAP</a>
     <a href="#community">COMMUNITY</a>
 <a href="monky_lab">CREATE</a>
@@ -361,7 +361,7 @@
           </div>
 
           <div class="contract-address">
-            8X5R1wZ35Pb5jkZAtzeLfyK9gXmdoy2pY4ex4vDqpump
+      8X5R1wZ35Pb5jkZAtzeLfyK9gXmdoy2pY4ex4vDqpump
           </div>
 
         </div>
@@ -445,27 +445,17 @@
 </section>
 
 <!-- MONKY LIVE CHART -->
-<section id="chart" aria-labelledby="monky-chart-title">
+<section id="chart" class="market" aria-labelledby="market-title">
   <div class="container">
-    <div class="kicker">FOLLOW THE MONKY</div>
-    <h2 class="title" id="monky-chart-title">$MONKY Live Chart</h2>
-    <p class="monky-chart-description">Follow $MONKY price action on Solana.</p>
-    <p id="monky-chart-status" class="monky-chart-description" role="status">Finding the $MONKY trading pair...</p>
-    <div class="monky-chart-panel">
-      <iframe
-        class="monky-chart-frame"
-        title="$MONKY price chart on DexScreener"
-        id="monky-chart-frame" hidden
-        loading="lazy"
-        referrerpolicy="strict-origin-when-cross-origin"
-        allowfullscreen>
-      </iframe>
+    <div class="market-heading"><div><div class="kicker">THE MONKY MARKET</div><h2 class="title" id="market-title">Watch. Swap. <span class="yellow">MONKY.</span></h2><p class="market-muted">Your corner of the Solana jungle.</p></div><span class="market-badge">SOLANA NETWORK</span></div>
+    <div class="market-contract"><code>8X5R1wZ35Pb5jkZAtzeLfyK9gXmdoy2pY4ex4vDqpump</code><button type="button" id="market-copy">COPY CONTRACT</button><span id="market-copy-status" role="status"></span></div>
+    <div class="market-metrics" aria-label="Market statistics"><div class="market-metric"><span>MONKY price</span><strong id="market-price">—</strong></div><div class="market-metric"><span>24h change</span><strong id="market-change">—</strong></div><div class="market-metric"><span>Market cap</span><strong id="market-cap">—</strong></div><div class="market-metric"><span>Pool liquidity</span><strong id="market-liquidity">—</strong></div><div class="market-metric"><span>24h pool volume</span><strong id="market-volume">—</strong></div></div>
+    <div class="market-update"><p id="market-status" role="status">Looking up market data...</p><button type="button" id="market-refresh">Refresh</button></div>
+    <div class="market-grid">
+      <article class="market-card"><div class="market-card-head"><h3>Price chart</h3><a id="monky-chart-link" href="https://dexscreener.com/solana/8X5R1wZ35Pb5jkZAtzeLfyK9gXmdoy2pY4ex4vDqpump" target="_blank" rel="noopener noreferrer">Open DexScreener ↗</a></div><p id="monky-chart-status" class="market-muted">The chart will appear when a trading pair is found.</p><iframe id="monky-chart-frame" class="monky-chart-frame" title="$MONKY price chart" hidden loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe><p class="market-note">If the chart stays loading, open DexScreener above.</p></article>
+      <article class="market-card market-swap"><div class="market-card-head"><h3>Swap MONKY</h3><span class="market-muted">via Jupiter</span></div><p class="market-muted">Choose an amount. Connect your wallet when you are ready.</p><div id="jupiter-plugin"></div><p id="swap-status" role="status" class="market-note">Loading swap...</p><a class="market-external" href="https://jup.ag/swap/So11111111111111111111111111111111111111112-8X5R1wZ35Pb5jkZAtzeLfyK9gXmdoy2pY4ex4vDqpump" target="_blank" rel="noopener noreferrer">Open Jupiter ↗</a><p class="market-note">Quotes and swaps depend on available liquidity and a supported route.</p></article>
     </div>
-    <div class="monky-chart-footer">
-      <p>Chart provided by DexScreener. If it is unavailable, open DexScreener directly. Data appears when the token has an indexed trading pair.</p>
-      <a id="monky-chart-link" class="btn" href="https://dexscreener.com/solana/8X5R1wZ35Pb5jkZAtzeLfyK9gXmdoy2pY4ex4vDqpump" target="_blank" rel="noopener noreferrer">OPEN DEXSCREENER</a>
-    </div>
-    <p class="monky-chart-contract">Contract: <code>8X5R1wZ35Pb5jkZAtzeLfyK9gXmdoy2pY4ex4vDqpump</code></p>
+    <div class="market-bottom"><article class="market-card"><div class="market-card-head"><h3>24h activity</h3><span class="market-muted">Selected pool</span></div><div class="market-activity"><div><span>Buys</span><strong id="market-buys">—</strong></div><div><span>Sells</span><strong id="market-sells">—</strong></div></div><p class="market-note">Transaction counts, not unique traders.</p></article><article class="market-card"><div class="market-card-head"><h3>Token explorer</h3><span class="market-badge">$MONKY</span></div><p class="market-muted">Explore holders, transfers and token details on Solscan.</p><a class="market-external" href="https://solscan.io/token/8X5R1wZ35Pb5jkZAtzeLfyK9gXmdoy2pY4ex4vDqpump" target="_blank" rel="noopener noreferrer">View token on Solscan ↗</a><p class="market-note">Market data: DexScreener. Values refer to the selected pool and refresh every 60 seconds.</p></article></div>
   </div>
 </section>
 
@@ -598,7 +588,7 @@
 
           <a
             class="btn dark full"
-            href="https://t.me/MonkyCoinOf">
+            href="hhttps://t.me/MonkyCoinOf">
             JOIN COMMUNITY
           </a>
 
@@ -765,7 +755,7 @@
 
         <a
           class="btn dark"
-          href="https://t.me/MonkyCoinOf">
+          href="hhttps://t.me/MonkyCoinOf">
           💬 TELEGRAM
         </a>
 
@@ -1226,37 +1216,6 @@ window.addEventListener("scroll", () => {
 
 </script>
 
-<script>
-(async function () {
-  const token = '8X5R1wZ35Pb5jkZAtzeLfyK9gXmdoy2pY4ex4vDqpump';
-  const status = document.getElementById('monky-chart-status');
-  const frame = document.getElementById('monky-chart-frame');
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 15000);
-  try {
-    const response = await fetch('https://api.dexscreener.com/token-pairs/v1/solana/' + token, {signal: controller.signal});
-    if (!response.ok) throw new Error('Pair lookup failed');
-    const data = await response.json();
-    if (!Array.isArray(data)) throw new Error('Invalid pair response');
-    const pairs = data.filter(pair => pair.chainId === 'solana' &&
-      pair.baseToken?.address === token && /^[1-9A-HJ-NP-Za-km-z]{32,44}$/.test(pair.pairAddress));
-    pairs.sort((a, b) => (Number(b.liquidity?.usd) || 0) - (Number(a.liquidity?.usd) || 0) ||
-      (Number(b.volume?.h24) || 0) - (Number(a.volume?.h24) || 0));
-    if (!pairs.length) {
-      status.textContent = 'DexScreener has no indexed trading pair for $MONKY yet. Check again later or open DexScreener directly.';
-      return;
-    }
-    const url = 'https://dexscreener.com/solana/' + pairs[0].pairAddress;
-    document.getElementById('monky-chart-link').href = url;
-    frame.src = url + '?embed=1&loadChartSettings=0&trades=0&info=0&chartLeftToolbar=0&chartTheme=dark&theme=dark&chartStyle=1&interval=15';
-    frame.hidden = false;
-    status.textContent = 'Trading pair found. If the chart keeps loading, use OPEN DEXSCREENER below.';
-  } catch (error) {
-    status.textContent = 'Unable to contact DexScreener. Check your connection, reload the page, or use OPEN DEXSCREENER below.';
-  } finally {
-    clearTimeout(timeout);
-  }
-})();
-</script>
+<script src="market.js" defer></script>
 </body>
 </html>
